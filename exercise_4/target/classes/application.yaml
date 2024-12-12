@@ -1,0 +1,15 @@
+# Task 2.1: Convert properties file to YAML configuration file.
+# Task 2.2: Set active Spring profile to dev. Indicates what sets of configuration should be used.
+spring.profiles.active: dev
+---
+# Task 2.2: Set debug property for dev profile.
+spring:
+  profiles: dev
+debug: true
+# Task 3.3: Set feed.filename property for dev profile.
+feed.filename: demo.feed
+---
+# Task 2.2: Set debug property for prod profile.
+spring:
+  profiles: prod
+debug: false
