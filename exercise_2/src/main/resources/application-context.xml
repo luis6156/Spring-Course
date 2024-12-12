@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- Ex. 2 Task 1.1: Activate annotations processing in the application context. -->
+    <context:annotation-config/>
+
+    <!-- Task 1.4: Set up MapClientRepository and BankingImpl beans using autowire by type for banking to find storage dependency -->
+    <bean id="clientRepository" class="com.luxoft.bankapp.service.storage.MapClientRepository"/>
+
+    <!-- Ex. 2 Task 1.2: Remove autowire attribute from the banking bean configuration -->
+    <bean id="banking" class="com.luxoft.bankapp.service.BankingImpl"/>
+
+    <!-- Task 2.1: Add BankReportServiceImpl to application-context.xml -->
+    <!-- Ex. 2 Task 1.5: Remove repository property from the bankReport bean configuration -->
+    <bean id="bankReport" class="com.luxoft.bankapp.service.BankReportServiceImpl"/>
+</beans>
