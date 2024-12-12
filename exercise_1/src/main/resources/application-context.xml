@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- Task 1.4: Set up MapClientRepository and BankingImpl beans using autowire by type for banking to find storage dependency -->
+    <bean id="clientRepository" class="com.luxoft.bankapp.service.storage.MapClientRepository"/>
+    <bean id="banking" class="com.luxoft.bankapp.service.BankingImpl" autowire="byType"/>
+
+    <!-- Task 2.1: Add BankReportServiceImpl to application-context.xml -->
+    <bean id="bankReport" class="com.luxoft.bankapp.service.BankReportServiceImpl">
+        <property name="repository" ref="clientRepository"/>
+    </bean>
+</beans>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Task 3.1: Create and add test-clients.xml to resources folder. (It is better to copy application-context.xml, rename it, and remove all the beans.) -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- Task 3.3: Now we should import application-context.xml to test-clients.xml because we will need some beans from this file -->
+    <import resource="application-context.xml"/>
+
+    <!-- Task 3.12: Configure a new bean with PropertyPlaceholderConfigurer class and set clients.properties to location property -->
+    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="location" value="clients.properties"/>
+    </bean>
+
+    <!-- Task 3.4: Bean savingAccount1 with initialBalance value 1000 -->
+    <bean id="savingAccount1" class="com.luxoft.bankapp.model.SavingAccount">
+        <constructor-arg value="${saving-account1.balance}"/>
+    </bean>
+
+    <!-- Task 3.5: Bean checkingAccount1 with overdraft value 1000 -->
+    <bean id="checkingAccount1" class="com.luxoft.bankapp.model.CheckingAccount">
+        <constructor-arg value="${checking-account1.overdraft}"/>
+    </bean>
+
+    <!-- Task 3.6: Configure bean client1 with name Jonny Bravo, also set gender, repository and accounts properties -->
+    <bean id="client1" class="com.luxoft.bankapp.model.Client">
+        <property name="name" value="${client1.name}"/>
+        <property name="gender" value="${client1.gender}"/>
+        <property name="city" value="${client1.city}"/>
+        <property name="repository" ref="clientRepository"/>
+        <property name="accounts">
+            <list>
+                <ref bean="savingAccount1"/>
+                <ref bean="checkingAccount1"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Task 3.9: Repeat steps for client_2 -->
+    <bean id="checkingAccount2" class="com.luxoft.bankapp.model.CheckingAccount">
+        <constructor-arg value="${checking-account2.overdraft}"/>
+    </bean>
+
+    <bean id="client2" class="com.luxoft.bankapp.model.Client">
+        <property name="name" value="${client2.name}"/>
+        <property name="gender" value="${client2.gender}"/>
+        <property name="city" value="${client2.city}"/>
+        <property name="repository" ref="clientRepository"/>
+        <property name="accounts">
+            <list>
+                <ref bean="checkingAccount2"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>
